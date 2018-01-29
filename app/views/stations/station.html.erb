@@ -15,8 +15,36 @@
   </head>
 
   <body>
+     
+
+   <% stations = DivvyStation.all %>
+   <% link = 'nothing' %>
+   <% name = '' %>
+    <% stations.each do |station| %>
+      <% converted = params["id"].to_i %>
+      <% if station["id"] == converted %>
+      <%     name = station["name"] %>
+      <%    lat = station["lat"] %>
+      <%   long = station["lng"] %>
+      <%    link = show_map(lat, long) %>
+      <% end %>
+    <%end %>
+
     <div class="container">
-      <%= yield %>
+          
+       <div class="page-header">
+          <h1><a href="/stations">Divvy Stations</a>
+            <small><%= name %></small>
+          </h1>
+      </div> 
+
+      <img src="<%=link%>" >   
+
     </div>
+ 
+
+
   </body>
-</html>
+
+
+</html> 
